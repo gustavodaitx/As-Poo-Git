@@ -1,0 +1,226 @@
+{
+  "info": {
+    "name": "API Exemplo - Autor/Livro",
+    "_postman_id": "f9de5d59-16c8-4b26-beb2-e89c8850fa10",
+    "description": "Cole\u00e7\u00e3o de testes da API com relacionamento One-to-Many (Autor -> Livros)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Autor - Criar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Machado de Assis\",\n  \"email\": \"machado@literatura.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/autores",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "autores"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Autor - Listar",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/autores",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "autores"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Autor - Buscar por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/autores/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "autores",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Autor - Atualizar",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Machado\",\n  \"email\": \"machado@novo.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/autores/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "autores",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Autor - Excluir",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8080/autores/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "autores",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Livro - Criar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Dom Casmurro\",\n  \"isbn\": \"978-85-359-0277-8\",\n  \"autorId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/livro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "livros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Livro - Listar",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/livro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "livros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Livro - Buscar por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/livro/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "livros",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Livro - Atualizar",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Dom Casmurro - Edi\\u00e7\\u00e3o\",\n  \"isbn\": \"978-85-359-0000-0\",\n  \"autorId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/livro/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "livros",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Livro - Excluir",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8080/livro/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "livros",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}
