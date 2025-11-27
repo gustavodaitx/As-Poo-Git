@@ -18,8 +18,12 @@ Projeto de exemplo com relacionamento One-to-Many: Autor -> Livro
     - Ou compile: `mvn clean package` e rode o jar.
 4. Importar `postman_collection.json` no Postman e testar endpoints.
 
-======================================================
+===================================================================================================================
+
+
 Detalhado: 
+
+=======================================================================================================
 
 API REST para gerenciamento de livros, utilizando:
 
