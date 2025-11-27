@@ -3,7 +3,7 @@ package br.com.ulbra.aula27.services;
 import br.com.ulbra.aula27.dto.livros.LivroRequestDTO;
 import br.com.ulbra.aula27.dto.livros.LivroResponseDTO;
 import br.com.ulbra.aula27.entities.Autor;
-import br.com.ulbra.aula27.entities.Livros;
+import br.com.ulbra.aula27.entities.Livro;
 import br.com.ulbra.aula27.repositories.AutorRepository;
 import br.com.ulbra.aula27.repositories.LivrosRepository;
 import org.springframework.stereotype.Service;
@@ -27,12 +27,12 @@ public class LivroService {
         Autor autor = autorRepository.findById(dto.autorId)
                 .orElseThrow(() -> new RuntimeException("Autor não encontrado!"));
 
-        Livros livro = new Livros();
+        Livro livro = new Livro();
         livro.setTitle(dto.titulo);
         livro.setIsbn(dto.isbn);
-        livro.setAutor(autor); // Associação
+        livro.setAutor(autor);
 
-        Livros saved = repository.save(livro);
+        Livro saved = repository.save(livro);
         return toResponse(saved);
     }
 
@@ -46,7 +46,7 @@ public class LivroService {
 
     // ✔ Buscar por ID
     public LivroResponseDTO findById(Long id) {
-        Livros livro = repository.findById(id)
+        Livro livro = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado!"));
 
         return toResponse(livro);
@@ -54,7 +54,7 @@ public class LivroService {
 
     // ✔ Atualizar
     public LivroResponseDTO update(Long id, LivroRequestDTO dto) {
-        Livros livro = repository.findById(id)
+        Livro livro = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado!"));
 
         Autor autor = autorRepository.findById(dto.autorId)
@@ -74,12 +74,13 @@ public class LivroService {
     }
 
     // 🔄 Entity → DTO
-    private LivroResponseDTO toResponse(Livros livro) {
+    private LivroResponseDTO toResponse(Livro livro) {
         return new LivroResponseDTO(
                 livro.getId(),
                 livro.getTitle(),
                 livro.getIsbn(),
-                livro.getAutor() != null ? livro.getAutor().getId() : null
+                livro.getAutor() != null ? livro.getAutor().getId() : null,
+                livro.getAutor() != null ? livro.getAutor().getNome() : "SEM AUTOR"
         );
     }
 }

@@ -19,10 +19,19 @@ public class AutorResponseDTO {
         this.livros = livros;
     }
 
+    public AutorResponseDTO(Long id, String nome) {
+
+    }
+
     public Long getId() {
         return id;
 
     }
+
+    public record AutorListDTO(
+            Long id,
+            String nome
+    ) {}
 
     public void setId(Long id) {
         this.id = id;

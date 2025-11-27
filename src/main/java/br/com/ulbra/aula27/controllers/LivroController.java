@@ -1,7 +1,5 @@
 package br.com.ulbra.aula27.controllers;
 
-import br.com.ulbra.aula27.dto.autor.AutorResponseDTO;
-import br.com.ulbra.aula27.dto.livros.AutorRequestDTO;
 import br.com.ulbra.aula27.dto.livros.LivroRequestDTO;
 import br.com.ulbra.aula27.dto.livros.LivroResponseDTO;
 import br.com.ulbra.aula27.services.AutorService;
@@ -19,19 +17,14 @@ public class LivroController {
 
     @Autowired
     private LivroService service;
-    @Autowired
-    private AutorService autorService;
+
     @Autowired
     private LivroService livroService;
 
     @PostMapping
     public LivroResponseDTO create(@RequestBody LivroRequestDTO dto) {
-        return new LivroResponseDTO(
-                service.create(dto).getId(),
-                dto.titulo,
-                dto.isbn,
-                dto.autorId
-        );
+        LivroResponseDTO response = service.create(dto);
+        return ResponseEntity.status(201).body(response).getBody();
     }
 
     // ✔ Buscar todos os livros

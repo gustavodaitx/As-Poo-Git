@@ -1,9 +1,7 @@
 package br.com.ulbra.aula27.entities;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity(name = "autor")
@@ -11,17 +9,17 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String nome;
     private String email;
 
     @OneToMany(mappedBy = "autor")
-    private List<Livros> livros = new ArrayList<>();
+    private List<Livro> livros = new ArrayList<>();
 
     public Autor(String nome, String email) {}
 
-    public Autor(Long id, String name, String email, String password, List<Livros> livros) {
+    public Autor(Long id, String nome, String email, String password, List<Livro> livros) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
 
         this.livros = livros;
@@ -31,11 +29,11 @@ public class Autor {
 
     }
 
-    public List<Livros> getPosts() {
+    public List<Livro> getPosts() {
         return livros;
     }
 
-    public void setPosts(List<Livros> livros) {
+    public void setPosts(List<Livro> livros) {
         this.livros = livros;
     }
 
@@ -47,12 +45,12 @@ public class Autor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
     public String getEmail() {
@@ -64,18 +62,23 @@ public class Autor {
     }
 
 
-    public void addLivros(Livros livros) {
+    public void addLivros(Livro livros) {
         livros.add(livros);
         livros.setAutor(this);
     }
 
 
-    public void removeLivros(Livros livros) {
+    public void removeLivros(Livro livros) {
         livros.remove(livros);
         livros.setAutor(null);
     }
 
-    public List<Livros> getLivros() {
+    public List<Livro> getLivros() {
         return List.of();
+    }
+
+
+    public String setNome() {
+        return nome;
     }
 }

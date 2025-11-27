@@ -1,8 +1,7 @@
 package br.com.ulbra.aula27.controllers;
 
 import br.com.ulbra.aula27.dto.autor.AutorResponseDTO;
-import br.com.ulbra.aula27.dto.livros.AutorRequestDTO;
-import br.com.ulbra.aula27.repositories.AutorRepository;
+import br.com.ulbra.aula27.dto.autor.AutorRequestDTO;
 import br.com.ulbra.aula27.services.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class AutorController {
     }
 
     @GetMapping
-    public List<AutorResponseDTO> list() {
+    public List<AutorResponseDTO.AutorListDTO> list() {
         return service.list();
     }
 

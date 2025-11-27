@@ -1,15 +1,12 @@
 package br.com.ulbra.aula27.services;
 
+import br.com.ulbra.aula27.dto.autor.AutorRequestDTO;
 import br.com.ulbra.aula27.dto.autor.AutorResponseDTO;
-import br.com.ulbra.aula27.dto.livros.AutorRequestDTO;
-import br.com.ulbra.aula27.dto.livros.LivroRequestDTO;
 import br.com.ulbra.aula27.dto.livros.LivroResponseDTO;
 import br.com.ulbra.aula27.entities.Autor;
 import br.com.ulbra.aula27.repositories.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,30 +26,25 @@ public class AutorService {
     /**
      * Cria um autor
      */
-    public Autor create(br.com.ulbra.aula27.dto.livros.AutorRequestDTO dto) {
-        Autor autor = new Autor(dto.nome, dto.email);
+    public Autor create(AutorRequestDTO dto) {
+        Autor autor = new Autor();
+        autor.setNome(dto.nome);
+        autor.setEmail(dto.email);
         return repository.save(autor);
     }
 
     /**
      * Lista todos os autores convertidos em DTO
      */
-    public List<AutorResponseDTO> list() {
+    public List<AutorResponseDTO.AutorListDTO> list() {
         return repository.findAll().stream()
                 .map(autor ->
-                        new AutorResponseDTO(
+                        new AutorResponseDTO.AutorListDTO(
                                 autor.getId(),
-                                autor.getName(),
-                                autor.getEmail(),
-                                autor.getLivros().stream()
-                                        .map(l -> new LivroResponseDTO(
-                                                l.getId(),
-                                                l.getTitle(),
-                                                l.getIsbn(),
-                                                autor.getId()
-                                        )).toList()
-                        )
-                ).toList();
+                                autor.getNome()
+                                )).toList();
+
+
     }
 
     // ✔ Buscar por ID
@@ -68,7 +60,7 @@ public class AutorService {
         Autor autor = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Autor não encontrado!"));
 
-        autor.setName(dto.nome);
+        autor.setNome(dto.nome);
         autor.setEmail(dto.email);
 
         repository.save(autor);
@@ -84,7 +76,7 @@ public class AutorService {
     private AutorResponseDTO toResponse(Autor autor) {
         return new AutorResponseDTO(
                 autor.getId(),
-                autor.getName(),
+                autor.getNome(),
                 autor.getEmail(),
                 autor.getLivros() != null ?
                         autor.getLivros().stream()
@@ -92,7 +84,8 @@ public class AutorService {
                                         l.getId(),
                                         l.getTitle(),
                                         l.getIsbn(),
-                                        autor.getId()
+                                        autor.getId(),
+                                        autor.setNome()
                                 )).toList() : List.of()
         );
     }

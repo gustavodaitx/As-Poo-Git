@@ -1,4 +1,4 @@
-package br.com.ulbra.aula27.dto.livros;
+package br.com.ulbra.aula27.dto.autor;
 
 public class AutorRequestDTO {
     public String nome;
